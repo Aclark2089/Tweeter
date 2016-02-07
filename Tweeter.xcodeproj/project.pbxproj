@@ -20,6 +20,7 @@
 		FA108A541C6742F1008338CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA108A531C6742F1008338CA /* User.swift */; };
 		FA108A561C674302008338CA /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA108A551C674302008338CA /* Tweet.swift */; };
 		FA108A581C6750D0008338CA /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA108A571C6750D0008338CA /* TimelineViewController.swift */; };
+		FA71CFBF1C67D862008B7627 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71CFBE1C67D862008B7627 /* TweetCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		FA108A531C6742F1008338CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA108A551C674302008338CA /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		FA108A571C6750D0008338CA /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		FA71CFBE1C67D862008B7627 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 		FA108A4A1C671D1C008338CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA71CFBE1C67D862008B7627 /* TweetCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				FA108A511C6730B4008338CA /* TwitterClient.swift in Sources */,
 				FA067B2F1C61798D0012FEC1 /* Tweeter.xcdatamodeld in Sources */,
 				FA067B271C61798D0012FEC1 /* AppDelegate.swift in Sources */,
+				FA71CFBF1C67D862008B7627 /* TweetCell.swift in Sources */,
 				FA108A561C674302008338CA /* Tweet.swift in Sources */,
 				FA108A581C6750D0008338CA /* TimelineViewController.swift in Sources */,
 				FA108A541C6742F1008338CA /* User.swift in Sources */,

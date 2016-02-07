@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             // Go to timeline screen since user is already set
             print("Current User Detected!")
-            var vc = storyboard.instantiateViewControllerWithIdentifier("TimelineViewController") as UIViewController
+            var vc = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
             window?.rootViewController = vc
         }
         

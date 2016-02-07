@@ -32,6 +32,9 @@ class TwitterClient: BDBOAuth1SessionManager {
         // Hit the timeline endpoint
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask, response: AnyObject?)  -> Void in
             var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+            for tweet in tweets{
+                print(tweet.user?.name)
+            }
             completion(tweets: tweets, error: nil)
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
                 print(error)
