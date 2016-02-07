@@ -39,7 +39,7 @@ class TweetCell: UITableViewCell {
             
             // Users' profile and username
             profileNameLabel.text = tweet.user!.name
-            usernameLabel.text = "@\(tweet.user!.screenName)"
+            usernameLabel.text = "@\(tweet.user!.screenName!)"
 
             // Setup count labels
             retweetCountLabel.text = "\(tweet.retweetCount!)"
