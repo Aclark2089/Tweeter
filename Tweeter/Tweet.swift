@@ -24,7 +24,7 @@ class Tweet: NSObject {
         createdAtString = dictionary["created_at"] as? String
       
         // Setup formatter to handle the date conversion
-        var formatter = NSDateFormatter()
+        let formatter = NSDateFormatter()
         
         // Set date using configured formatter
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"

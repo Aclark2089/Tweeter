@@ -11,7 +11,7 @@ import BDBOAuth1Manager
 
 let twitterConsumerKey = "SwKvrVJkarLigmBdd1rtRn8iD"
 let twitterConsumerSecret = "PaCmRn0NB3Ic5ajMyovFJBG4ZmmKoyPM4NYOBFLOZqRMdqe4oQ"
-let twitterBaseURL = NSURL(string: "https://api.twitter.com")
+let twitterBaseURL = NSURL(string: "https://api.twitter.com/")
 
 class TwitterClient: BDBOAuth1SessionManager {
     // Variable for the login completion to hold closure until needed
