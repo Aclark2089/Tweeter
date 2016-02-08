@@ -59,6 +59,8 @@ class TweetDetailViewController: UIViewController {
         profileImageView.setImageWithURL(NSURL(string: (tweet.user?.profileImageURL)!)!)
         profileImageView.layer.cornerRadius = 5
         profileImageView.clipsToBounds = true;
+        
+        timeLabel.text = "\(tweet.createdAtString!)"
     }
     
     

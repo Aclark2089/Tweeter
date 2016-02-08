@@ -25,13 +25,15 @@ class Tweet: NSObject {
       
         // Setup formatter to handle the date conversion
         var formatter = NSDateFormatter()
-        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         
         // Set date using configured formatter
+        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
+        formatter.dateStyle = .ShortStyle
+        createdAtString = formatter.stringFromDate(createdAt!)
         
+        // Set counts
         favoriteCount = dictionary["favorite_count"] as! Int
-        
         retweetCount = dictionary["retweet_count"] as! Int
         
     }
