@@ -19,7 +19,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var tableView: UITableView!
     
     // Variables
-    var tweets: [Tweet]!
+    var tweets: [Tweet]?
     var params: NSDictionary!
     var refreshController: UIRefreshControl!
     
@@ -63,7 +63,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
-        cell.tweet = tweets![indexPath.row]
+        if tweets != nil {
+            cell.tweet = tweets![indexPath.row]
+        }
         
         return cell
     }
@@ -95,12 +97,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         User.currentUser?.logout()
     }
 
-
     // Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Select this cell of the tableview structure
-        let cell = sender as! UITableViewCell
+        let cell = sender as! TweetCell
         let indexPath = tableView.indexPathForCell(cell)
         
         
@@ -115,5 +116,4 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Set the tweet content
         detailViewController.tweet = tweet
     }
-
 }

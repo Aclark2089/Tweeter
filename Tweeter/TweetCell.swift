@@ -14,9 +14,6 @@ class TweetCell: UITableViewCell {
     
     // Images
     @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var replyImageView: UIImageView!
-    @IBOutlet var retweetImageView: UIImageView!
-    @IBOutlet var favoriteImageView: UIImageView!
     @IBOutlet var usersRetweetImageView: UIImageView!
     
     // Labels
@@ -26,6 +23,11 @@ class TweetCell: UITableViewCell {
     @IBOutlet var tweetContentLabel: UILabel!
     @IBOutlet var favoriteCountLabel: UILabel!
     @IBOutlet var retweetCountLabel: UILabel!
+    
+    // Buttons
+    @IBOutlet var retweetButton: UIButton!
+    @IBOutlet var favoriteButton: UIButton!
+    
     
     
     // Variables
@@ -50,19 +52,49 @@ class TweetCell: UITableViewCell {
             profileImageView.layer.cornerRadius = 5
             profileImageView.clipsToBounds = true;
             
+            retweetCount = tweet.retweetCount!
+            favoriteCount = tweet.favoriteCount!
             timeLabel.text = "\(tweet.createdAtString!)"
         }
     }
+    
+    var isRetweet = false
+    var isFavorite = false
+    var retweetCount: Int!
+    var favoriteCount: Int!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        isRetweet = !isRetweet
+        
+        if (isRetweet) {
+            retweetButton.tintColor = UIColor.greenColor()
+            retweetCountLabel.textColor = UIColor.greenColor()
+            //            if (tweet.retweetCount != nil) {
+            //                tweet.retweetCount = tweet.retweetCount! + 1
+            //            }
+            TwitterClient.sharedInstance.retweetMe(tweet.id!)
+        }
+    }
+    
+    
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        isRetweet = !isFavorite
+        
+        if (isFavorite) {
+            favoriteButton.tintColor = UIColor.redColor()
+            favoriteCountLabel.textColor = UIColor.redColor()
+            //            if (tweet.user?.favoriteCount != nil) {
+            //                tweet.user?.favoriteCount = tweet.user!.favoriteCount! + 1
+            //            }
+            TwitterClient.sharedInstance.favoriteMe(tweet.id!)
+        }
     }
 
 }
