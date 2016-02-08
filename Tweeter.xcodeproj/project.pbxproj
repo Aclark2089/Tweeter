@@ -21,6 +21,7 @@
 		FA108A561C674302008338CA /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA108A551C674302008338CA /* Tweet.swift */; };
 		FA108A581C6750D0008338CA /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA108A571C6750D0008338CA /* TimelineViewController.swift */; };
 		FA71CFBF1C67D862008B7627 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71CFBE1C67D862008B7627 /* TweetCell.swift */; };
+		FA71CFC11C6832D0008B7627 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71CFC01C6832D0008B7627 /* TweetDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		FA108A551C674302008338CA /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		FA108A571C6750D0008338CA /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		FA71CFBE1C67D862008B7627 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		FA71CFC01C6832D0008B7627 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			children = (
 				FA108A4D1C672EFE008338CA /* LoginViewController.swift */,
 				FA108A571C6750D0008338CA /* TimelineViewController.swift */,
+				FA71CFC01C6832D0008B7627 /* TweetDetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			files = (
 				FA108A511C6730B4008338CA /* TwitterClient.swift in Sources */,
 				FA067B2F1C61798D0012FEC1 /* Tweeter.xcdatamodeld in Sources */,
+				FA71CFC11C6832D0008B7627 /* TweetDetailViewController.swift in Sources */,
 				FA067B271C61798D0012FEC1 /* AppDelegate.swift in Sources */,
 				FA71CFBF1C67D862008B7627 /* TweetCell.swift in Sources */,
 				FA108A561C674302008338CA /* Tweet.swift in Sources */,

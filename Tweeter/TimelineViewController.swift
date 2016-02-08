@@ -91,14 +91,25 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         User.currentUser?.logout()
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        // Select this cell of the tableview structure
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        
+        
+        // Get this tweet
+        let tweet = tweets![indexPath!.row]
+        
+        
+        // Assign the detail view controller
+        let detailViewController = segue.destinationViewController as! TweetDetailViewController
+        
+        
+        // Set the tweet content
+        detailViewController.tweet = tweet
     }
-    */
 
 }
