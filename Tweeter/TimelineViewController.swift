@@ -19,7 +19,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var tableView: UITableView!
     
     // Variables
-    var tweets: [Tweet]!
+    var tweets: [Tweet]?
     var params: NSDictionary!
     var refreshController: UIRefreshControl!
     
@@ -70,6 +70,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     // Refresh Controller
     func setupRefreshController() {
         
@@ -97,7 +101,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Select this cell of the tableview structure
-        let cell = sender as! UITableViewCell
+        let cell = sender as! TweetCell
         let indexPath = tableView.indexPathForCell(cell)
         
         

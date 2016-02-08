@@ -54,7 +54,7 @@ class TweetCell: UITableViewCell {
             
             retweetCount = tweet.retweetCount!
             favoriteCount = tweet.favoriteCount!
-            
+            timeLabel.text = "\(tweet.createdAtString!)"
         }
     }
     

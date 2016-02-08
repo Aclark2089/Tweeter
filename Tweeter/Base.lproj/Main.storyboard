@@ -362,7 +362,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.0" green="0.12549020349979401" blue="0.22352941334247589" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EvD-zn-TuS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Dnv-3l-0k4" secondAttribute="bottom" constant="140" id="Hhd-kg-956"/>
                             <constraint firstItem="EvD-zn-TuS" firstAttribute="leading" secondItem="Yhr-Nu-Dqu" secondAttribute="leading" id="dJy-XO-eid"/>
