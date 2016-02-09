@@ -68,6 +68,11 @@ class TweetCell: UITableViewCell {
         // Initialization code
     }
     
+    func checkColors() {
+        isFavorite ? (favoriteCountLabel.textColor = UIColor.redColor()) : (favoriteCountLabel.textColor = UIColor.blackColor())
+        isRetweet ? (retweetCountLabel.textColor = UIColor.greenColor()) : (retweetCountLabel.textColor = UIColor.blackColor())
+    }
+    
     
     @IBAction func onRetweet(sender: AnyObject) {
         isRetweet = !isRetweet
@@ -75,24 +80,29 @@ class TweetCell: UITableViewCell {
         if (isRetweet) {
             retweetButton.tintColor = UIColor.greenColor()
             retweetCountLabel.textColor = UIColor.greenColor()
-            //            if (tweet.retweetCount != nil) {
-            //                tweet.retweetCount = tweet.retweetCount! + 1
-            //            }
+            
+            tweet.retweetCount! = tweet.retweetCount! + 1
+            retweetCount = tweet.retweetCount
+            retweetCountLabel.text = "\(retweetCount)"
+            
             TwitterClient.sharedInstance.retweetMe(tweet.id!)
+            
         }
     }
     
     
     
     @IBAction func onFavorite(sender: AnyObject) {
-        isRetweet = !isFavorite
+        isFavorite = !isFavorite
         
         if (isFavorite) {
             favoriteButton.tintColor = UIColor.redColor()
             favoriteCountLabel.textColor = UIColor.redColor()
-            //            if (tweet.user?.favoriteCount != nil) {
-            //                tweet.user?.favoriteCount = tweet.user!.favoriteCount! + 1
-            //            }
+            
+            tweet.favoriteCount! = tweet.favoriteCount! + 1
+            favoriteCount = tweet.favoriteCount!
+            favoriteCountLabel.text = "\(favoriteCount)"
+            
             TwitterClient.sharedInstance.favoriteMe(tweet.id!)
         }
     }
