@@ -52,12 +52,14 @@ class TweetCell: UITableViewCell {
             profileImageView.layer.cornerRadius = 5
             profileImageView.clipsToBounds = true;
             
+            // Set cell counts
             retweetCount = tweet.retweetCount!
             favoriteCount = tweet.favoriteCount!
             timeLabel.text = "\(tweet.createdAtString!)"
         }
     }
     
+    // Retweet & Fav tests and counts
     var isRetweet = false
     var isFavorite = false
     var retweetCount: Int!
@@ -65,44 +67,68 @@ class TweetCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        checkLabelColors()
         // Initialization code
     }
     
-    func checkColors() {
-        isFavorite ? (favoriteCountLabel.textColor = UIColor.redColor()) : (favoriteCountLabel.textColor = UIColor.blackColor())
-        isRetweet ? (retweetCountLabel.textColor = UIColor.greenColor()) : (retweetCountLabel.textColor = UIColor.blackColor())
+    
+    // Check the label colors
+    func checkLabelColors() {
+        if (tweet != nil) {
+            tweet.isFavorited! ? (favoriteCountLabel.textColor = UIColor.redColor()) : (favoriteCountLabel.textColor = UIColor.blackColor())
+            tweet.isRetweeted! ? (retweetCountLabel.textColor = UIColor.greenColor()) : (retweetCountLabel.textColor = UIColor.blackColor())
+        }
     }
     
+    // Increment the fav or RT counts and their labels
+    func labelIncrement(type: String) {
+        if (type.lowercaseString == "retweet") {
+            // It is a rt
+            tweet.retweetCount! = tweet.retweetCount! + 1
+            retweetCount = tweet.retweetCount
+            retweetCountLabel.text = "\(retweetCount)"
+        } else {
+            // It is a fav
+            tweet.favoriteCount! = tweet.favoriteCount! + 1
+            favoriteCount = tweet.favoriteCount!
+            favoriteCountLabel.text = "\(favoriteCount)"
+        }
+    }
     
+    // Retweeting Action
     @IBAction func onRetweet(sender: AnyObject) {
         isRetweet = !isRetweet
         
         if (isRetweet) {
+            
+            // Setup the label & button colors
             retweetButton.tintColor = UIColor.greenColor()
             retweetCountLabel.textColor = UIColor.greenColor()
             
-            tweet.retweetCount! = tweet.retweetCount! + 1
-            retweetCount = tweet.retweetCount
-            retweetCountLabel.text = "\(retweetCount)"
+            // Change the RT label
+            labelIncrement("retweet")
             
+            // Send retweet
             TwitterClient.sharedInstance.retweetMe(tweet.id!)
             
         }
     }
     
     
-    
+    // Favoriting Action
     @IBAction func onFavorite(sender: AnyObject) {
         isFavorite = !isFavorite
         
         if (isFavorite) {
+            
+            // Setup the label & button colors
             favoriteButton.tintColor = UIColor.redColor()
             favoriteCountLabel.textColor = UIColor.redColor()
             
-            tweet.favoriteCount! = tweet.favoriteCount! + 1
-            favoriteCount = tweet.favoriteCount!
-            favoriteCountLabel.text = "\(favoriteCount)"
+            // Change fav label
+            labelIncrement("favorite")
             
+            // Send retweet
             TwitterClient.sharedInstance.favoriteMe(tweet.id!)
         }
     }
