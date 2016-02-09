@@ -30,7 +30,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 1. Retweet and Favorite POST methods
 2. JSON serialization method changes in Swift
 
-## Video Walkthrough 
+## Video Walkthrough
 
 ![Tweeter](https://cloud.githubusercontent.com/assets/6467543/12879701/5ae1776e-ce05-11e5-901d-3ab3e6825cc5.gif)
 
@@ -41,6 +41,74 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 I could not get the POST methods for the retweet and favorite endpoints to work. They would simply crash the app and throw an error saying that the TimelineViewController has no such selection for the button. I even asked some classmates about ways to solve this and they could not suggest me anything that would work.
 
 I have submitted a pull request featuring the issue, I hope to finish it soon.
+
+## License
+
+    Copyright [2016] [R. Alex Clark]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+* * *
+
+# Project 5 - *Tweeter v2*
+
+Time spent: **X** hours spent in total
+
+## User Stories
+
+The following **required** functionality is completed:
+
+- [ ] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [ ] Profile page:
+   - [ ] Contains the user header view
+   - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
+- [ ] Home Timeline: Tapping on a user image should bring up that user's profile page
+- [ ] Compose Page: User can compose a new tweet by tapping on a compose button.
+
+The following **optional** features are implemented:
+
+- [ ] When composing, you should have a countdown in the upper right for the tweet limit.
+- [ ] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
+- [ ] Profile Page
+   - [ ] Implement the paging view for the user description.
+   - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+   - [ ] Pulling down the profile page should blur and resize the header image.
+- [ ] Account switching
+   - [ ] Long press on tab bar to bring up Account view with animation
+   - [ ] Tap account to switch to
+   - [ ] Include a plus button to Add an Account
+   - [ ] Swipe to delete an account
+
+The following **additional** features are implemented:
+
+- [ ] List anything else that you can get done to improve the app functionality!
+
+Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
+
+1.
+2.
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+Describe any challenges encountered while building the app.
 
 ## License
 
