@@ -11,6 +11,8 @@ import UIKit
 class TweetDetailViewController: UIViewController {
     
     // Outlets
+    
+    // User properties
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var profileNameLabel: UILabel!
     @IBOutlet var tweetContentLabel: UILabel!
@@ -19,6 +21,7 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet var usersRetweetedLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     
+    // Images for Detail View
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var favoriteImageView: UIImageView!
     @IBOutlet var replyImageView: UIImageView!
@@ -26,14 +29,13 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet var usersRetweetImageView: UIImageView!
 
     
-    
     // Variables
     var tweet: Tweet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Setup tweet content for this detail view on call
         setTweetContent()
     }
 
@@ -41,6 +43,7 @@ class TweetDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     func setTweetContent() {
         // Tweet content
@@ -63,16 +66,5 @@ class TweetDetailViewController: UIViewController {
         timeLabel.text = "\(tweet.createdAtString!)"
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

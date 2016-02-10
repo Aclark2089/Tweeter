@@ -10,17 +10,24 @@ import UIKit
 
 // Global User
 var _currentUser: User?
+
+// User object key for the logged in user
 let currentUserKey = "currentUserKey"
+
+// Global broadcast events for the app
 let userDidLoginNotification = "User logged in!"
 let userDidLogoutNotification = "User logged out!"
 
 class User: NSObject {
+    
+    // User properties we need
     var name: String?
     var screenName: String?
     var profileImageURL: String?
     var tagline: String?
     var dictionary: NSDictionary?
     
+    // Initialize the user object
     init(dictionary: NSDictionary){
         self.dictionary = dictionary
         name = dictionary["name"] as? String
@@ -29,7 +36,10 @@ class User: NSObject {
         tagline = dictionary["description"] as? String
     }
     
+    // Function to handle user logging out from Tweeter
     func logout() {
+        
+        // Set current user to nil, kill access token and clear the saved user key
         User.currentUser = nil
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
@@ -40,37 +50,50 @@ class User: NSObject {
         
     }
     
+    // currentUser class that has the User class and additional methods
     class var currentUser: User? {
+
+        // Get user
         get {
+        
+            // If we have no current user only, setup the new current user
             if _currentUser == nil {
                 var data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData
+        
+                // If we have gotten a vavlue for the currentUserKey, then we try to initialize the User properties using the data
                 if data != nil {
-                    do{
+                    // Try to serialize a dict object using the JSON data we received with the object key
+                    do {
                         var dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
                        _currentUser = User(dictionary: dictionary!)
-                    } catch let error as NSError {
-                        //handle error
-                        print("Error : \(error)")
+                    } catch let error as NSError { // Serialization Failed, log error
+                        NSLog("Error: \(error)")
                     }
                 }
             }
+        
+            // Return the current user
             return _currentUser
         }
+        // Set the user
         set(user) {
-            if user != nil {
-            _currentUser = user
             
-            // Setup persistence for the set user
-            do{
-                let data = try NSJSONSerialization.dataWithJSONObject(user!.dictionary!, options: NSJSONWritingOptions(rawValue: 0))
-                NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
-            } catch let error as NSError {
-                //handle error
-                print("Error : \(error)")
-                NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
+            // If passed user is not nil, set current user
+            if user != nil {
+                _currentUser = user
+                
+                // Setup persistence for the set user
+                do {
+                    let data = try NSJSONSerialization.dataWithJSONObject(user!.dictionary!, options: NSJSONWritingOptions(rawValue: 0))
+                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
+                } catch let error as NSError { // Serialization Failed, log error & we set nothing for the current user
+                    NSLog("Error : \(error)")
+                    NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
+                }
+                    
+                // Save the NSUserDefaults for access
+                NSUserDefaults.standardUserDefaults().synchronize()
             }
-            NSUserDefaults.standardUserDefaults().synchronize()
-        }
         
         }
     }

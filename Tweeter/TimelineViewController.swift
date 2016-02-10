@@ -31,16 +31,18 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Setup tableview cell sizes and row height for auto layout
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 160
+        
+        // Setup refresh controller
         setupRefreshController()
         
-        // Get home timeline
+        // Get home timeline, assign the tweets and refresh timeline
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
             self.tableView.reloadData()
         })
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 160
 
     }
 
@@ -50,41 +52,45 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    // Set table cell count to number of tweets we have received
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tweets != nil {
             return tweets!.count
-        } else {
+        } else { // No tweets
             return 0
         }
-        
     }
     
+    // Handle setting each cell to one TweetCell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        // Get this cell @ indexPath
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
+        // If we have tweets, set the one for this indexPath to the current cell
         if tweets != nil {
             cell.tweet = tweets![indexPath.row]
         }
         
+        // Return and go on to next cell
         return cell
     }
     
+    // Deselect the cell after it is selected for the detail view
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     // Refresh Controller
     func setupRefreshController() {
-        
         self.refreshController = UIRefreshControl()
         self.refreshController.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshController)
-    
     }
     
-    // Refresh Function
+    // Refresh Function for the Refresh Controller
     func refresh(sender:AnyObject) {
+        // Call timeline and reload if successful
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
             self.tableView.reloadData()
@@ -92,12 +98,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         refreshController?.endRefreshing()
     }
     
-    // Actions
+    // User logout action
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
     }
 
-    // Segue
+    // Segue handler
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Select this cell of the tableview structure
