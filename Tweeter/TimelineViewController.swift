@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController {
 
     // Outlets
     
@@ -22,6 +22,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var tweets: [Tweet]?
     var params: NSDictionary!
     var refreshController: UIRefreshControl!
+    var isMoreDataLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,35 +52,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    
-    // Set table cell count to number of tweets we have received
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tweets != nil {
-            return tweets!.count
-        } else { // No tweets
-            return 0
-        }
-    }
-    
-    // Handle setting each cell to one TweetCell
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        // Get this cell @ indexPath
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
-        
-        // If we have tweets, set the one for this indexPath to the current cell
-        if tweets != nil {
-            cell.tweet = tweets![indexPath.row]
-        }
-        
-        // Return and go on to next cell
-        return cell
-    }
-    
-    // Deselect the cell after it is selected for the detail view
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
     
     // Refresh Controller
     func setupRefreshController() {
@@ -121,5 +93,73 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Set the tweet content
         detailViewController.tweet = tweet
+    }
+}
+
+
+// Tableview Extensions
+extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
+
+    // Set table cell count to number of tweets we have received
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tweets != nil {
+            return tweets!.count
+        } else { // No tweets
+            return 0
+        }
+    }
+    
+    // Handle setting each cell to one TweetCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        // Get this cell @ indexPath
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        
+        // If we have tweets, set the one for this indexPath to the current cell
+        if tweets != nil {
+            cell.tweet = tweets![indexPath.row]
+        }
+        
+        // Return and go on to next cell
+        return cell
+    }
+    
+    // Deselect the cell after it is selected for the detail view
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+
+}
+
+// Scrollview Extensions
+extension TimelineViewController: UIScrollViewDelegate {
+
+    // Check if we need to load more data
+    func loadDataOnScroll() {
+        self.isMoreDataLoading = false
+    }
+    
+    // If tableView was scrolled through
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        // If more data is loading
+        if(!isMoreDataLoading){
+            
+            // set the tableview content height size of the scrollView && set the offset of the new scrollview content
+            let scrollViewContentHeight = tableView.contentSize.height;
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // If scrollview y pos is @ more than the allowed offset and tableview is being dragged, we load more tweets
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                
+                isMoreDataLoading = true
+                
+                // Code to load more results
+                loadDataOnScroll()
+                scrollView.contentOffset.y = 0
+            }
+            
+        }
     }
 }

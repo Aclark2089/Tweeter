@@ -32,6 +32,12 @@ class TweetCell: UITableViewCell {
     
     // Variables
     
+    // Retweet & Fav tests and counts
+    var isRetweet = false
+    var isFavorite = false
+    var retweetCount: Int!
+    var favoriteCount: Int!
+    
     // Tweet we are referencing for this cell
     var tweet: Tweet! {
         didSet {
@@ -59,11 +65,6 @@ class TweetCell: UITableViewCell {
         }
     }
     
-    // Retweet & Fav tests and counts
-    var isRetweet = false
-    var isFavorite = false
-    var retweetCount: Int!
-    var favoriteCount: Int!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -104,6 +105,8 @@ class TweetCell: UITableViewCell {
             // Setup the label & button colors
             retweetButton.tintColor = UIColor.greenColor()
             retweetCountLabel.textColor = UIColor.greenColor()
+            
+            retweetButton.imageView?.image
             
             // Change the RT label
             labelIncrement("retweet")
