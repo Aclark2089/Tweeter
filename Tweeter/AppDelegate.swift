@@ -12,9 +12,9 @@ import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    // Variables
     var window: UIWindow?
-    // Storyboard var
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -23,18 +23,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Check in with the notifications and see if the logout was called
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
+        // If we have a current user, we can just start at the timeline view
         if User.currentUser != nil {
             // Go to timeline screen since user is already set
-            print("Current User Detected!")
-            var vc = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
+            NSLog("Current User Detected\nStarting @ Timeline")
+            // Grab our initial view controller, the navigation controller for the timeline
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
+            // Set the initial view controller to our timeline nav controller
             window?.rootViewController = vc
         }
         
         return true
     }
     
+    // Function for handling user logout
     func userDidLogout() {
-        var vc = storyboard.instantiateInitialViewController()! as UIViewController
+        // Set the current vc to the login screen
+        let vc = storyboard.instantiateInitialViewController()! as UIViewController
+        // Move window to the vc
         window?.rootViewController = vc
     }
 

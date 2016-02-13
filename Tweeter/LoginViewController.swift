@@ -14,15 +14,10 @@ class LoginViewController: UIViewController {
     // Outlets
     @IBOutlet var loginButton: UIButton!
     
-    
-    // Variables
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
+        // Call TC constructor using the key values
         TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
     }
 
@@ -32,29 +27,22 @@ class LoginViewController: UIViewController {
     }
     
 
+    // Login action
     @IBAction func onLogin(sender: AnyObject) {
+        
+        // Attempt to login
         TwitterClient.sharedInstance.loginWithCompletion() {
             (user: User?, error: NSError?) in
+            // Only proceed if the login was a success
             if user != nil {
-                // perform segue since user logged
+                // Segue from login to our timeline
                 self.performSegueWithIdentifier("loginSegue", sender: self)
             }
-            else {
-                // handle login error from failure to auth
-                
+            else { // Login Failure
+                NSLog("Error for Login: \(error)")
             }
         }
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
