@@ -18,15 +18,15 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet var tweetContentLabel: UILabel!
     @IBOutlet var retweetCountLabel: UILabel!
     @IBOutlet var favoriteCountLabel: UILabel!
-    @IBOutlet var usersRetweetedLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     
     // Images for Detail View
     @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var favoriteImageView: UIImageView!
-    @IBOutlet var replyImageView: UIImageView!
-    @IBOutlet var retweetImageView: UIImageView!
-    @IBOutlet var usersRetweetImageView: UIImageView!
+    
+    // Buttons
+    @IBOutlet var replyButton: UIButton!
+    @IBOutlet var retweetButton: UIButton!
+    @IBOutlet var favoriteButton: UIButton!
 
     
     // Variables
@@ -55,8 +55,8 @@ class TweetDetailViewController: UIViewController {
         usernameLabel.text = "@\(tweet.user!.screenName!)"
         
         // Setup count labels
-        retweetCountLabel.text = "\(tweet.retweetCount!)"
-        favoriteCountLabel.text = "\(tweet.favoriteCount!)"
+        retweetCountLabel.text = "\(tweet.retweetCount!) RETWEETS"
+        favoriteCountLabel.text = "\(tweet.favoriteCount!) FAVORITES"
         
         // User's image
         profileImageView.setImageWithURL(NSURL(string: (tweet.user?.profileImageURL)!)!)
@@ -64,6 +64,21 @@ class TweetDetailViewController: UIViewController {
         profileImageView.clipsToBounds = true;
         
         timeLabel.text = "\(tweet.createdAtString!)"
+    }
+    
+    
+    // Actions
+    
+    // Call parent reply for this call
+    @IBAction func onDetailReply(sender: AnyObject) {
+    }
+    
+    // Call parent retweet for this cell
+    @IBAction func onDetailRetweet(sender: AnyObject) {
+    }
+    
+    // Call parent favorite for this cell
+    @IBAction func onDetailFavorite(sender: AnyObject) {
     }
     
 
