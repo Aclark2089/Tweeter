@@ -67,21 +67,63 @@ class TweetDetailViewController: UIViewController {
         profileImageView.layer.cornerRadius = 5
         profileImageView.clipsToBounds = true;
         
+        // Set cell counts
+        retweetCount = tweet.retweetCount!
+        favoriteCount = tweet.favoriteCount!
         timeLabel.text = "\(tweet.createdAtString!)"
+        
     }
     
     // Increment the fav or RT counts and their labels
     func labelIncrement(type: String) {
         if (type.lowercaseString == "retweet") {
             // It is a rt
+            
+            // Setup the label & button colors
+            retweetButton.tintColor = UIColor.greenColor()
+            retweetCountLabel.textColor = UIColor.greenColor()
+            
             tweet.retweetCount! = tweet.retweetCount! + 1
             retweetCount = tweet.retweetCount
             retweetCountLabel.text = "\(retweetCount) RETWEETS"
         } else {
             // It is a fav
+            
+            // Setup the label & button colors
+            favoriteButton.tintColor = UIColor.redColor()
+            favoriteCountLabel.textColor = UIColor.redColor()
+            
             tweet.favoriteCount! = tweet.favoriteCount! + 1
             favoriteCount = tweet.favoriteCount!
-            favoriteCountLabel.text = "\(favoriteCount) RETWEETS"
+            favoriteCountLabel.text = "\(favoriteCount) FAVORITES"
+        }
+    }
+    
+    // Increment the fav or RT counts and their labels
+    func labelDecrement(type: String) {
+        if (type.lowercaseString == "retweet") {
+            // It is a rt
+
+            retweetButton.tintColor = UIColor.grayColor()
+            retweetCountLabel.textColor = UIColor.grayColor()
+            
+            // Adjust labels
+            tweet.retweetCount! = tweet.retweetCount! - 1
+            retweetCount = tweet.retweetCount
+            retweetCountLabel.text = "\(retweetCount) RETWEETS"
+            
+        } else {
+            // It is a fav
+            
+            // Setup the label and button colors
+            favoriteButton.tintColor = UIColor.grayColor()
+            favoriteCountLabel.textColor = UIColor.grayColor()
+            
+            // Adjust labels
+            tweet.favoriteCount! = tweet.favoriteCount! - 1
+            favoriteCount = tweet.favoriteCount!
+            favoriteCountLabel.text = "\(favoriteCount) FAVORITES"
+            
         }
     }
     
@@ -96,16 +138,26 @@ class TweetDetailViewController: UIViewController {
     @IBAction func onDetailRetweet(sender: AnyObject) {
         if !(tweet.isRetweeted!) {
             
-            // Setup the label & button colors
-            retweetButton.tintColor = UIColor.greenColor()
-            retweetCountLabel.textColor = UIColor.greenColor()
+            tweet.isRetweeted = true
             
             // Change the RT label
             labelIncrement("retweet")
             
             // Send retweet
-            TwitterClient.sharedInstance.retweetMe(tweet.id!)
+            TwitterClient.sharedInstance.retweet(tweet.id!)
             
+        }
+        else {
+            if (tweet.retweetCount != nil) {
+                
+                tweet.isRetweeted = false
+                
+                labelDecrement("retweet")
+                
+            }
+            
+            // Call unretweet api func
+            TwitterClient.sharedInstance.unRetweet(tweet.id!)
         }
     }
     
@@ -113,15 +165,28 @@ class TweetDetailViewController: UIViewController {
     @IBAction func onDetailFavorite(sender: AnyObject) {
         if !(tweet.isFavorited!) {
             
-            // Setup the label & button colors
-            favoriteButton.tintColor = UIColor.redColor()
-            favoriteCountLabel.textColor = UIColor.redColor()
+            tweet.isFavorited = true
             
             // Change fav label
             labelIncrement("favorite")
             
-            // Send retweet
-            TwitterClient.sharedInstance.favoriteMe(tweet.id!)
+            // Send favorite
+            TwitterClient.sharedInstance.favorite(tweet.id!)
+        }
+        
+        else {
+            
+            if (tweet.favoriteCount != nil) {
+                
+                tweet.isFavorited = false
+                
+                // Change fav label
+                labelIncrement("favorite")
+                
+            }
+            
+            // Call unfavorite api func
+            TwitterClient.sharedInstance.unFavorite(tweet.id!)
         }
     
 

@@ -26,6 +26,7 @@ class User: NSObject {
     var profileImageURL: String?
     var tagline: String?
     var dictionary: NSDictionary?
+    var favoriteCount: Int?
     
     // Initialize the user object
     init(dictionary: NSDictionary){
@@ -34,6 +35,7 @@ class User: NSObject {
         screenName = dictionary["screen_name"] as? String
         profileImageURL = dictionary["profile_image_url"] as? String
         tagline = dictionary["description"] as? String
+        favoriteCount = dictionary["favourites_count"] as? Int
     }
     
     // Function to handle user logging out from Tweeter
