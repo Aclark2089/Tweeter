@@ -31,6 +31,10 @@ class TweetDetailViewController: UIViewController {
     
     // Variables
     var tweet: Tweet!
+    var isRetweet = false
+    var isFavorite = false
+    var retweetCount: Int!
+    var favoriteCount: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +70,21 @@ class TweetDetailViewController: UIViewController {
         timeLabel.text = "\(tweet.createdAtString!)"
     }
     
+    // Increment the fav or RT counts and their labels
+    func labelIncrement(type: String) {
+        if (type.lowercaseString == "retweet") {
+            // It is a rt
+            tweet.retweetCount! = tweet.retweetCount! + 1
+            retweetCount = tweet.retweetCount
+            retweetCountLabel.text = "\(retweetCount) RETWEETS"
+        } else {
+            // It is a fav
+            tweet.favoriteCount! = tweet.favoriteCount! + 1
+            favoriteCount = tweet.favoriteCount!
+            favoriteCountLabel.text = "\(favoriteCount) RETWEETS"
+        }
+    }
+    
     
     // Actions
     
@@ -75,11 +94,36 @@ class TweetDetailViewController: UIViewController {
     
     // Call parent retweet for this cell
     @IBAction func onDetailRetweet(sender: AnyObject) {
+        if !(tweet.isRetweeted!) {
+            
+            // Setup the label & button colors
+            retweetButton.tintColor = UIColor.greenColor()
+            retweetCountLabel.textColor = UIColor.greenColor()
+            
+            // Change the RT label
+            labelIncrement("retweet")
+            
+            // Send retweet
+            TwitterClient.sharedInstance.retweetMe(tweet.id!)
+            
+        }
     }
     
     // Call parent favorite for this cell
     @IBAction func onDetailFavorite(sender: AnyObject) {
-    }
+        if !(tweet.isFavorited!) {
+            
+            // Setup the label & button colors
+            favoriteButton.tintColor = UIColor.redColor()
+            favoriteCountLabel.textColor = UIColor.redColor()
+            
+            // Change fav label
+            labelIncrement("favorite")
+            
+            // Send retweet
+            TwitterClient.sharedInstance.favoriteMe(tweet.id!)
+        }
     
 
+    }
 }

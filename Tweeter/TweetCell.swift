@@ -98,15 +98,13 @@ class TweetCell: UITableViewCell {
     
     // Retweeting Action
     @IBAction func onRetweet(sender: AnyObject) {
-        isRetweet = !isRetweet
         
-        if (isRetweet) {
+        if !(tweet.isRetweeted!) {
             
             // Setup the label & button colors
             retweetButton.tintColor = UIColor.greenColor()
             retweetCountLabel.textColor = UIColor.greenColor()
             
-            retweetButton.imageView?.image
             
             // Change the RT label
             labelIncrement("retweet")
@@ -120,9 +118,7 @@ class TweetCell: UITableViewCell {
     
     // Favoriting Action
     @IBAction func onFavorite(sender: AnyObject) {
-        isFavorite = !isFavorite
-        
-        if (isFavorite) {
+        if !(tweet.isFavorited!) {
             
             // Setup the label & button colors
             favoriteButton.tintColor = UIColor.redColor()
