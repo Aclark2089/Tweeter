@@ -134,31 +134,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Tweeter.TwitterClient.loginWithCompletion (Tweeter.TwitterClient)((user : Swift.Optional&lt;Tweeter.User&gt;, error : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "Tweeter.TwitterClient.homeTimelineWithParams (Tweeter.TwitterClient)(Swift.Optional&lt;__ObjC.NSDictionary&gt;, completion : (tweets : Swift.Optional&lt;Swift.Array&lt;Tweeter.Tweet&gt;&gt;, error : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Tweeter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Alex/Projects/CodePath/Week4/Tweeter/Tweeter/TwitterClient.swift"
-                  timestampString = "476605867.901061"
+                  timestampString = "477291092.112497"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "53"
                   endingLineNumber = "53"
-                  offsetFromSymbolStart = "358">
+                  offsetFromSymbolStart = "890">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Tweeter.TwitterClient.(loginWithCompletion (Tweeter.TwitterClient) -&gt; ((user : Swift.Optional&lt;Tweeter.User&gt;, error : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "Tweeter.TwitterClient.(homeTimelineWithParams (Tweeter.TwitterClient) -&gt; (Swift.Optional&lt;__ObjC.NSDictionary&gt;, completion : (tweets : Swift.Optional&lt;Swift.Array&lt;Tweeter.Tweet&gt;&gt;, error : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #2)"
                   moduleName = "Tweeter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Alex/Projects/CodePath/Week4/Tweeter/Tweeter/TwitterClient.swift"
-                  timestampString = "476605867.901219"
+                  timestampString = "477291092.112637"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "22">
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "423">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -257,6 +257,9 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onCancel:" destination="swP-V6-ccT" eventType="touchUpInside" id="7Rk-2D-bnJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Tweet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QN4-l5-UHp">
                                 <rect key="frame" x="104" y="28" width="125" height="30"/>
@@ -274,6 +277,9 @@
                                 <rect key="frame" x="20" y="109" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="onTweetEntered:" destination="swP-V6-ccT" eventType="editingChanged" id="VC8-dq-FDs"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Characters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe2-lc-UTn">
                                 <rect key="frame" x="215" y="80" width="85" height="21"/>
@@ -286,10 +292,19 @@
                                 <state key="normal" title="Go">
                                     <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
+                                <connections>
+                                    <action selector="onGo:" destination="swP-V6-ccT" eventType="touchUpInside" id="n0h-EH-xgR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.12549020349979401" blue="0.22352941334247589" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="b9w-Hp-8Ru" id="OfF-FL-B7r"/>
+                        <outlet property="charLeftLabel" destination="Bdb-ti-rKb" id="uHm-mn-fkn"/>
+                        <outlet property="goButton" destination="79v-6o-cAn" id="gh2-Wf-Dsd"/>
+                        <outlet property="tweetTextField" destination="fck-33-i0W" id="kRW-Vw-OUc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXh-s8-RgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

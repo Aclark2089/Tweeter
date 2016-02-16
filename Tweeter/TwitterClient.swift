@@ -65,27 +65,35 @@ class TwitterClient: BDBOAuth1SessionManager {
     // Cancel previous retweet made on this tweet of passed id
     func unRetweet(id: String) {
         POST("https://api.twitter.com/1.1/statuses/unretweet/\(id).json", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
-            print("Successfully removed retweet on tweet")
+            NSLog("Successfully removed retweet on tweet")
             }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
-                print("Failed to remove retweet\nError: \(error)")
+                NSLog("Failed to remove retweet\nError: \(error)")
         }
     }
 
     // Favorite the tweet for the passed id
     func favorite(id: String) {
         POST("https://api.twitter.com/1.1/favorites/create.json?id=\(id)", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
-            print("Succesfully favorited")
+            NSLog("Succesfully favorited")
             }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
-                print("Failed to favorite")
+                NSLog("Failed to favorite")
         }
     }
     
     // Cancel previous favorite made on this tweet of passed id
     func unFavorite(id: String) {
         POST("https://api.twitter.com/1.1/favorites/destroy.json?id=\(id)", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
-            print("Succesfully removed favorite on tweet")
+            NSLog("Succesfully removed favorite on tweet")
             }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
-                print("Failed to remove favorite\nError: \(error)")
+                NSLog("Failed to remove favorite\nError: \(error)")
+        }
+    }
+    
+    func sendTweet(tweetContent: String) {
+        POST("https://api.twitter.com/1.1/statuses/update.json?status=\(tweetContent)", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            NSLog("Successfully posted tweet to timeline!")
+            }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                NSLog("Failed to post tweet to user timeline\nError: \(error)")
         }
     }
     
