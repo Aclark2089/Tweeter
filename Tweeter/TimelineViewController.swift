@@ -77,22 +77,28 @@ class TimelineViewController: UIViewController {
 
     // Segue handler
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        // Select this cell of the tableview structure
-        let cell = sender as! TweetCell
-        let indexPath = tableView.indexPathForCell(cell)
-        
-        
-        // Get this tweet
-        let tweet = tweets![indexPath!.row]
-        
-        
-        // Assign the detail view controller
-        let detailViewController = segue.destinationViewController as! TweetDetailViewController
-        
-        
-        // Set the tweet content
-        detailViewController.tweet = tweet
+        if (segue.identifier == "NewTweetSegue") {
+            let newTweetViewController = segue.destinationViewController as! NewTweetViewController
+            
+        }
+        else {
+            // Select this cell of the tableview structure
+            let cell = sender as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            
+            // Get this tweet
+            let tweet = tweets![indexPath!.row]
+            
+            
+            // Assign the detail view controller
+            let detailViewController = segue.destinationViewController as! TweetDetailViewController
+            
+            
+            // Set the tweet content
+            detailViewController.tweet = tweet
+        }
+
     }
 }
 

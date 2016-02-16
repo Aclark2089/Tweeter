@@ -225,6 +225,11 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="New Tweet" id="HaU-AW-5CH">
+                            <connections>
+                                <segue destination="swP-V6-ccT" kind="modal" identifier="NewTweetSegue" id="WVy-eQ-xdN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="logoutButton" destination="pFx-31-xp5" id="8WT-gj-6F3"/>
@@ -234,6 +239,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Kc-Lb-Y26" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1140" y="335"/>
+        </scene>
+        <!--New Tweet Controller-->
+        <scene sceneID="3qR-Of-Fe7">
+            <objects>
+                <viewController title="New Tweet Controller" id="swP-V6-ccT" customClass="NewTweetViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4jJ-fp-bCb"/>
+                        <viewControllerLayoutGuide type="bottom" id="L2T-iN-Xaa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vsA-p0-81c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eXh-s8-RgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1115" y="-435"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="D8K-8Q-fYq">
+            <objects>
+                <viewController title="Profile View Controller" id="K81-1I-aQB" customClass="ProfileViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u0Z-bA-NUV"/>
+                        <viewControllerLayoutGuide type="bottom" id="3an-07-Yx1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fhe-7p-rEl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UWb-ri-9eX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="-435"/>
         </scene>
         <!--Tweet Detail View Controller-->
         <scene sceneID="TgO-TB-Rxx">
@@ -322,6 +363,12 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUE-WZ-zid">
+                                        <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                        <connections>
+                                            <segue destination="K81-1I-aQB" kind="modal" identifier="DetailToProfileSegue" id="343-cS-osY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
