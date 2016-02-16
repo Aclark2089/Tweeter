@@ -181,7 +181,7 @@ class TweetDetailViewController: UIViewController {
                 tweet.isFavorited = false
                 
                 // Change fav label
-                labelIncrement("favorite")
+                labelDecrement("favorite")
                 
             }
             
