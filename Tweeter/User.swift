@@ -26,16 +26,33 @@ class User: NSObject {
     var profileImageURL: String?
     var tagline: String?
     var dictionary: NSDictionary?
+
+    // Profile Images For User
+    var profileBackgroundColor: String?
+    var profileBackgroundURL: String?
+    
+    // Tweet Dates
+    var createdAtString: String?
+
+    // Follower, Favorites, and Friends Metrics for User
     var favoriteCount: Int?
+    var friendsCount: Int?
+    var followersCount: Int?
     
     // Initialize the user object
     init(dictionary: NSDictionary){
+        
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
         profileImageURL = dictionary["profile_image_url"] as? String
         tagline = dictionary["description"] as? String
         favoriteCount = dictionary["favourites_count"] as? Int
+        friendsCount = dictionary["friends_count"] as? Int
+        followersCount = dictionary["followers_count"] as? Int
+        profileBackgroundColor = dictionary["profile_background_color"] as? String
+        profileBackgroundURL = dictionary["profile_background_image_url"] as? String
+
     }
     
     // Function to handle user logging out from Tweeter

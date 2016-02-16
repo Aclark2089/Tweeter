@@ -118,6 +118,19 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    // Gather my own user login info
+    func myCredentials(completion: (user: User, error: NSError?) -> ()) {
+        TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            let user = User(dictionary: response as! NSDictionary)
+            User.currentUser = user
+            NSLog("Succeeded in getting current user!")
+            completion(user: user, error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                NSLog("Failed to get current user\nError: \(error)")
+                self.loginCompletion?(user: nil, error: error)
+        })
+    }
+    
     
     
     func openURL(url: NSURL) {

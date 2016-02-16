@@ -191,4 +191,15 @@ class TweetDetailViewController: UIViewController {
     
 
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "DetailToProfileSegue") {
+            print("here")
+            let profileViewController = segue.destinationViewController as! ProfileViewController
+            profileViewController.tweet = tweet
+            profileViewController.currentUserProfile = false
+            
+        }
+    }
+    
 }
