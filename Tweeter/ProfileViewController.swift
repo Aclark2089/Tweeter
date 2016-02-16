@@ -24,9 +24,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet var friendCountLabel: UILabel!
     @IBOutlet var followerCountLabel: UILabel!
     
-    // Created At
-    @IBOutlet var createdAtLabel: UILabel!
-    
     // Name, Tag Line, and Handle
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var tagLineLabel: UILabel!

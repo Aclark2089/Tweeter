@@ -78,8 +78,10 @@ class TimelineViewController: UIViewController {
     // Segue handler
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "NewTweetSegue") {
-            let newTweetViewController = segue.destinationViewController as! NewTweetViewController
-            
+            //let newTweetViewController = segue.destinationViewController as! NewTweetViewController
+        }
+        else if (segue.identifier == "ViewProfileSegue") {
+            //let profileViewController = segue.destinationViewController as! ProfileViewController
         }
         else {
             // Select this cell of the tableview structure
