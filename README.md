@@ -102,15 +102,13 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
-
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Tweeter v2](https://cloud.githubusercontent.com/assets/6467543/13068592/d7e17cdc-d44a-11e5-9172-f4556013a392.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+This was a really fun application to build and I am glad that we got more time working with the API calls and functions. I was a little bit busy this week so I had to take an extra day to build this but it came together pretty well in the end.
 
 ## License
 
